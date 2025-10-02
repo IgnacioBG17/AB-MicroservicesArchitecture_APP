@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36327.8 d17.14
+VisualStudioVersion = 17.14.36327.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{7B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Services.CouponAPI", "Ecommerce.Services.CouponAPI\Ecommerce.Services.CouponAPI.csproj", "{267F3912-5984-4254-8F08-BF2370AF02F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecommerce.Web", "Ecommerce.Web\Ecommerce.Web.csproj", "{FEBE25ED-1B1B-4B9A-AECB-453E0FDB8A55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +25,17 @@ Global
 		{267F3912-5984-4254-8F08-BF2370AF02F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{267F3912-5984-4254-8F08-BF2370AF02F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{267F3912-5984-4254-8F08-BF2370AF02F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEBE25ED-1B1B-4B9A-AECB-453E0FDB8A55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEBE25ED-1B1B-4B9A-AECB-453E0FDB8A55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEBE25ED-1B1B-4B9A-AECB-453E0FDB8A55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEBE25ED-1B1B-4B9A-AECB-453E0FDB8A55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{267F3912-5984-4254-8F08-BF2370AF02F1} = {7BA896FF-8DBC-46AA-8B15-253AD9B18705}
+		{FEBE25ED-1B1B-4B9A-AECB-453E0FDB8A55} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {58B7FDDD-82D9-44DF-8F22-8F34CB9E5163}
