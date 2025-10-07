@@ -1,6 +1,7 @@
 using Ecommerce.Web.Service;
 using Ecommerce.Web.Service.IService;
 using Ecommerce.Web.Utility;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,13 +14,22 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddHttpClient();
 builder.Services.AddHttpClient<ICouponService, CouponService>();
+builder.Services.AddHttpClient<IAuthService, AuthService>();
 
 /* Cargamos desde la configuracion la URL del servicio y la asignamos a la variable CouponAPIBase */
 SD.CouponAPIBase = builder.Configuration["ServicesUrls:CouponAPI"];
+SD.AuthAPIBase = builder.Configuration["ServicesUrls:AuthAPI"];
 
 builder.Services.AddScoped<IBaseService, BaseService>();
 builder.Services.AddScoped<ICouponService, CouponService>();
-
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ITokenProvider, TokenProvider>();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+{
+    options.ExpireTimeSpan = TimeSpan.FromHours(10);
+    options.LoginPath = "/Auth/Login";
+    options.AccessDeniedPath = "/Auth/AccessDenied";
+});
 
 
 
@@ -37,7 +47,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication(); /* permitimos que use Autenticacion */
 app.UseAuthorization();
 
 app.MapControllerRoute(
