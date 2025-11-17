@@ -4,7 +4,7 @@
 
 ---
 
-## ?? Descripci車n general
+## Descripci車n general
 
 Este repositorio contiene una **aplicaci車n de e?commerce basada en microservicios**, dise?ada para practicar y demostrar patrones modernos de arquitectura con **.NET 8**.
 
@@ -27,7 +27,7 @@ Los objetivos principales del proyecto son:
 
 ---
 
-## ?? Microservicios
+## Microservicios
 
 ### 1. Identity Microservice (`MS.Identity`)
 - Maneja **registro**, **inicio de sesi車n** y **gesti車n de usuarios**.
@@ -73,7 +73,7 @@ Los objetivos principales del proyecto son:
 
 ---
 
-## ?? API Gateway y aplicaci車n cliente
+## API Gateway y aplicaci車n cliente
 
 ### Ocelot API Gateway
 - Punto de entrada central para todas las **peticiones del cliente**.
@@ -92,7 +92,7 @@ Los objetivos principales del proyecto son:
 
 ---
 
-## ?? Seguridad
+## Seguridad
 
 - **.NET Identity** para gesti車n de usuarios y roles.
 - **Autenticaci車n basada en JWT** para llamadas seguras a las APIs.
@@ -101,7 +101,7 @@ Los objetivos principales del proyecto son:
 
 ---
 
-## ?? Patrones de comunicaci車n
+## Patrones de comunicaci車n
 
 ### Comunicaci車n s赤ncrona
 - Basada en **HTTP/REST** a trav谷s del **Ocelot Gateway** para:
@@ -123,7 +123,7 @@ Beneficios:
 
 ---
 
-## ??? Datos y persistencia
+## Datos y persistencia
 
 Cada microservicio es due?o de su **propia base de datos**, siguiendo el patr車n **Database?per?Microservice**:
 
@@ -134,7 +134,7 @@ Cada microservicio es due?o de su **propia base de datos**, siguiendo el patr車n
 
 ---
 
-## ?? Tecnolog赤as y herramientas
+## Tecnolog赤as y herramientas
 
 - **Backend**
   - .NET 8
@@ -165,7 +165,7 @@ Cada microservicio es due?o de su **propia base de datos**, siguiendo el patr車n
 
 ---
 
-## ?? Roadmap / Posibles mejoras
+## Roadmap / Posibles mejoras
 
 - Implementar **logging centralizado** (Serilog + ELK / Seq).
 - A?adir **versionado de APIs** y **rate limiting**.
@@ -174,7 +174,7 @@ Cada microservicio es due?o de su **propia base de datos**, siguiendo el patr車n
 
 ---
 
-## ?? Sobre el autor
+## Sobre el autor
 
 Este proyecto forma parte de un proceso pr芍ctico para dominar **microservicios con .NET 8**, poniendo 谷nfasis en:
 
@@ -182,11 +182,9 @@ Este proyecto forma parte de un proceso pr芍ctico para dominar **microservicios 
 - Integraciones listas para la nube con Azure.
 - Buenas pr芍cticas de arquitectura orientadas a entornos empresariales.
 
-Si este proyecto te resulta 迆til, no dudes en dejar una ? en el repositorio y conectar en LinkedIn o GitHub.
-
 ---
 
-## ?? Licencia
+## Licencia
 
  MIT
 
