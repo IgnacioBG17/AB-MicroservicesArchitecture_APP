@@ -13,15 +13,18 @@ builder.Services.AddControllersWithViews();
  */
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddHttpClient();
+builder.Services.AddHttpClient<IProductService, ProductService>();
 builder.Services.AddHttpClient<ICouponService, CouponService>();
 builder.Services.AddHttpClient<IAuthService, AuthService>();
 
 /* Cargamos desde la configuracion la URL del servicio y la asignamos a la variable CouponAPIBase */
 SD.CouponAPIBase = builder.Configuration["ServicesUrls:CouponAPI"];
 SD.AuthAPIBase = builder.Configuration["ServicesUrls:AuthAPI"];
+SD.ProductAPIBase = builder.Configuration["ServicesUrls:ProductAPI"];
 
 builder.Services.AddScoped<IBaseService, BaseService>();
 builder.Services.AddScoped<ICouponService, CouponService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITokenProvider, TokenProvider>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
