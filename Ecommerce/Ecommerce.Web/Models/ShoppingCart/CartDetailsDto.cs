@@ -1,4 +1,6 @@
-﻿namespace Ecommerce.Services.ShoppingCartAPI.Models.Dto
+﻿using Ecommerce.Web.Models.Product;
+
+namespace Ecommerce.Web.Models.ShoppingCart
 {
     public class CartDetailsDto
     {

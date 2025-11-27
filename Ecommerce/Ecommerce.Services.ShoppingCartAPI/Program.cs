@@ -1,9 +1,11 @@
 using AutoMapper;
+using Ecommerce.MessageBus;
 using Ecommerce.Services.ShoppingCartAPI;
 using Ecommerce.Services.ShoppingCartAPI.Data;
 using Ecommerce.Services.ShoppingCartAPI.Extensions;
 using Ecommerce.Services.ShoppingCartAPI.Service;
 using Ecommerce.Services.ShoppingCartAPI.Service.IService;
+using Ecommerce.Services.ShoppingCartAPI.Utility;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -22,12 +24,17 @@ builder.Services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 // Registro de servicio en el contenedor de dependencias
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICouponService, CouponService>();
+builder.Services.AddScoped<IMessageBus, MessageBus>();
+builder.Services.AddScoped<BackEndApiAuthenticationHttpClientHandler>();
 
 // HttpClient para consumir microservicios 
-builder.Services.AddHttpClient("Product", u => u.BaseAddress = new Uri(builder.Configuration["ServiceUrls:ProductAPI"]));
-builder.Services.AddHttpClient("Coupon", u => u.BaseAddress = new Uri(builder.Configuration["ServiceUrls:CouponAPI"]));
+builder.Services.AddHttpClient("Product", u => u.BaseAddress = new Uri(builder.Configuration["ServiceUrls:ProductAPI"]))
+                .AddHttpMessageHandler<BackEndApiAuthenticationHttpClientHandler>();
+builder.Services.AddHttpClient("Coupon", u => u.BaseAddress = new Uri(builder.Configuration["ServiceUrls:CouponAPI"])).
+                AddHttpMessageHandler<BackEndApiAuthenticationHttpClientHandler>(); 
 
 builder.Services.AddControllers();
 

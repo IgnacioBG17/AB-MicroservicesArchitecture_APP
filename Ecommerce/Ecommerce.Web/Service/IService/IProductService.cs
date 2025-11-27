@@ -1,4 +1,5 @@
 ﻿using Ecommerce.Web.Models;
+using Ecommerce.Web.Models.Product;
 
 namespace Ecommerce.Web.Service.IService
 {
