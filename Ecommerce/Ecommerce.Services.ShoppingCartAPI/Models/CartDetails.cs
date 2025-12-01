@@ -1,4 +1,4 @@
-﻿using Ecommerce.Services.ShoppingCartAPI.Models.Dto;
+﻿using Ecommerce.Services.ShoppingCartAPI.Models.Dto.ProductAPI;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

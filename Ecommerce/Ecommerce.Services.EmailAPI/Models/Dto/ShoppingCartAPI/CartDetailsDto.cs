@@ -1,6 +1,6 @@
-﻿using Ecommerce.Services.ShoppingCartAPI.Models.Dto.ProductAPI;
+﻿using Ecommerce.Services.EmailAPI.Models.Dto.ProductAPI;
 
-namespace Ecommerce.Services.ShoppingCartAPI.Models.Dto
+namespace Ecommerce.Services.EmailAPI.Models.Dto
 {
     public class CartDetailsDto
     {

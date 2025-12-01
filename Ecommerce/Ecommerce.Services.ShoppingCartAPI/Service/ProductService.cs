@@ -1,4 +1,5 @@
 ﻿using Ecommerce.Services.ShoppingCartAPI.Models.Dto;
+using Ecommerce.Services.ShoppingCartAPI.Models.Dto.ProductAPI;
 using Ecommerce.Services.ShoppingCartAPI.Service.IService;
 using Newtonsoft.Json;
 

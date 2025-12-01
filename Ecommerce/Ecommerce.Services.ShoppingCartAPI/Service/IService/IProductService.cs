@@ -1,4 +1,4 @@
-﻿using Ecommerce.Services.ShoppingCartAPI.Models.Dto;
+﻿using Ecommerce.Services.ShoppingCartAPI.Models.Dto.ProductAPI;
 
 namespace Ecommerce.Services.ShoppingCartAPI.Service.IService
 {

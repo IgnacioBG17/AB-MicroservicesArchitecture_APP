@@ -1,3 +1,4 @@
+using Ecommerce.MessageBus;
 using Ecommerce.Services.AuthAPI.Data;
 using Ecommerce.Services.AuthAPI.Models;
 using Ecommerce.Services.AuthAPI.Service;
@@ -6,7 +7,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 /* Configuración cadena de conexion */
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -21,8 +21,10 @@ builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("ApiSett
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
+// Registro de servicio en el contenedor de dependencias
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+builder.Services.AddScoped<IMessageBus, MessageBus>();
 
 // Add services to the container.
 builder.Services.AddControllers();

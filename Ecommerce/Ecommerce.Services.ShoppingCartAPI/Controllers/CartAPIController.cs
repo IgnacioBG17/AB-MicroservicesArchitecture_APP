@@ -3,6 +3,8 @@ using Ecommerce.MessageBus;
 using Ecommerce.Services.ShoppingCartAPI.Data;
 using Ecommerce.Services.ShoppingCartAPI.Models;
 using Ecommerce.Services.ShoppingCartAPI.Models.Dto;
+using Ecommerce.Services.ShoppingCartAPI.Models.Dto.CouponAPI;
+using Ecommerce.Services.ShoppingCartAPI.Models.Dto.ProductAPI;
 using Ecommerce.Services.ShoppingCartAPI.Service.IService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
