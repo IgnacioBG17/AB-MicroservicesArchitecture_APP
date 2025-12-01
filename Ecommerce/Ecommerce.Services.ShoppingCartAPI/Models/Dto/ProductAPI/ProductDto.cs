@@ -1,7 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Ecommerce.Web.Models
-{
+﻿namespace Ecommerce.Services.ShoppingCartAPI.Models.Dto.ProductAPI
+{ 
     public class ProductDto
     {
         public int ProductId { get; set; }
@@ -10,7 +8,5 @@ namespace Ecommerce.Web.Models
         public string Description { get; set; }
         public string CategoryName { get; set; }
         public string ImageUrl { get; set; }
-        [Range(1,100)]
-        public int Count { get; set; } = 1;
     }
 }
