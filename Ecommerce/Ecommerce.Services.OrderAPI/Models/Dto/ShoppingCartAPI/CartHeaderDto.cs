@@ -1,4 +1,4 @@
-﻿namespace Ecommerce.Services.ShoppingCartAPI.Models.Dto
+﻿namespace Ecommerce.Services.OrderAPI.Models.Dto.ShoppingCartAPI
 {
     public class CartHeaderDto
     {

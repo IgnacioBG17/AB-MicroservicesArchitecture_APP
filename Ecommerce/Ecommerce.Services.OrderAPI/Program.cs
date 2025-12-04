@@ -1,7 +1,11 @@
 using AutoMapper;
-using Ecommerce.Services.CouponAPI;
-using Ecommerce.Services.CouponAPI.Data;
-using Ecommerce.Services.CouponAPI.Extensions;
+using Ecommerce.MessageBus;
+using Ecommerce.Services.OrderAPI;
+using Ecommerce.Services.OrderAPI.Data;
+using Ecommerce.Services.OrderAPI.Extensions;
+using Ecommerce.Services.OrderAPI.Service;
+using Ecommerce.Services.OrderAPI.Service.IService;
+using Ecommerce.Services.OrderAPI.Utility;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -20,6 +24,15 @@ IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+// Registro de servicio en el contenedor de dependencias
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IProductService, Ecommerce.Services.OrderAPI.Service.ProductService>();
+builder.Services.AddScoped<IMessageBus, MessageBus>();
+builder.Services.AddScoped<BackEndApiAuthenticationHttpClientHandler>();
+
+// HttpClient para consumir microservicios 
+builder.Services.AddHttpClient("Product", u => u.BaseAddress = new Uri(builder.Configuration["ServiceUrls:ProductAPI"]))
+                .AddHttpMessageHandler<BackEndApiAuthenticationHttpClientHandler>();
 
 builder.Services.AddControllers();
 
@@ -62,7 +75,7 @@ if (app.Environment.IsDevelopment())
 {
     /* Configuración Swagger */
     app.UseSwagger();
-	app.UseSwaggerUI();
+    app.UseSwaggerUI();
 }
 
 StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
@@ -78,13 +91,13 @@ app.Run();
 /* Aplicar la migración al arrancar el servicio */
 void ApplyMigration()
 {
-	using (var scope = app.Services.CreateScope())
-	{
-		var _db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    using (var scope = app.Services.CreateScope())
+    {
+        var _db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-		if (_db.Database.GetPendingMigrations().Count() > 0)
-		{
-			_db.Database.Migrate();
-		}
-	}
+        if (_db.Database.GetPendingMigrations().Count() > 0)
+        {
+            _db.Database.Migrate();
+        }
+    }
 }
