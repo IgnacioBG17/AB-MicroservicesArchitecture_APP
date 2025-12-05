@@ -27,13 +27,13 @@ namespace Ecommerce.Services.AuthAPI.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegistrationRequestDto model)
         {
-            //var errorMessage = await _authService.Register(model);
-            //if (!string.IsNullOrEmpty(errorMessage))
-            //{
-            //    _response.IsSuccess = false;
-            //    _response.Message = errorMessage;
-            //    return BadRequest(_response);
-            //}
+            var errorMessage = await _authService.Register(model);
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                _response.IsSuccess = false;
+                _response.Message = errorMessage;
+                return BadRequest(_response);
+            }
 
             await _messageBus.PublishMessage(model.Email, _configuration.GetValue<string>("TopicAndQueueNames:RegisterUserQueue"));
             return Ok(_response);

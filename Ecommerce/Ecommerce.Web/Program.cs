@@ -16,12 +16,14 @@ builder.Services.AddHttpClient<IProductService, ProductService>();
 builder.Services.AddHttpClient<ICouponService, CouponService>();
 builder.Services.AddHttpClient<IAuthService, AuthService>();
 builder.Services.AddHttpClient<ICartService, CartService>();
+builder.Services.AddHttpClient<IOrderService, OrderService>();
 
 /* Cargamos desde la configuracion la URL del servicio y la asignamos a la variable CouponAPIBase */
 SD.CouponAPIBase = builder.Configuration["ServicesUrls:CouponAPI"];
 SD.AuthAPIBase = builder.Configuration["ServicesUrls:AuthAPI"];
 SD.ProductAPIBase = builder.Configuration["ServicesUrls:ProductAPI"];
 SD.ShoppingCartAPIBase = builder.Configuration["ServicesUrls:ShoppingCartAPI"];
+SD.OrderAPIBase = builder.Configuration["ServicesUrls:OrderAPI"];
 
 // Registro de servicio en el contenedor de dependencias
 builder.Services.AddScoped<IBaseService, BaseService>();
@@ -30,6 +32,7 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITokenProvider, TokenProvider>();
 builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 // Configuración de autenticación basada en cookies:
 // - Despues de 10 minutos de inactividad la sesion expira
