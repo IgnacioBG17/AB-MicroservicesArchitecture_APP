@@ -6,7 +6,7 @@
 
 ## Descripcion general
 
-Este repositorio contiene una **aplicacion de e?commerce basada en microservicios**, disenada para practicar y demostrar patrones modernos de arquitectura con **.NET 8**.
+Este repositorio contiene una **aplicacion de e-commerce basada en microservicios**, disenada para practicar y demostrar patrones modernos de arquitectura con **.NET 8**.
 
 La solucion esta compuesta por varios microservicios desplegables de forma independiente, una **aplicacion cliente MVC**, un **API Gateway** y mensajeria **asincronica con Azure Service Bus**.
 
@@ -16,9 +16,9 @@ Los objetivos principales del proyecto son:
 - Implementar **autenticacion y autorizacion** con **.NET Identity** y **control de acceso basado en roles**.
 - Demostrar **comunicacion sincrona (HTTP)** y **asincronica (eventos/mensajes)** entre servicios.
 - Utilizar **Azure Service Bus (Queues & Topics)** para flujos desacoplados y dirigidos por eventos.
-- Implementar **arquitectura en capas (N?Layer)** con **Repository Pattern** y **Entity Framework Core**.
+- Implementar **arquitectura en capas (N-Layer)** con **Repository Pattern** y **Entity Framework Core**.
 - Exponer APIs REST usando **Swagger / OpenAPI**.
-- Construir un front?end **ASP.NET Core MVC** con **Bootstrap 5** como capa de UI.
+- Construir un front-end **ASP.NET Core MVC** con **Bootstrap 5** como capa de UI.
 
 ---
 
@@ -73,7 +73,7 @@ Los objetivos principales del proyecto son:
 
 ---
 
-## ?? API Gateway y aplicacion cliente
+## API Gateway y aplicacion cliente
 
 ### Ocelot API Gateway
 - Punto de entrada central para todas las **peticiones del cliente**.
@@ -86,7 +86,7 @@ Los objetivos principales del proyecto son:
 
 ### ASP.NET Core MVC Application
 - Construida con **ASP.NET Core MVC (.NET 8)** y **Bootstrap 5**.
-- Implementa la UI de e?commerce (catalogo, carrito, checkout, login, etc.).
+- Implementa la UI de e-commerce (catalogo, carrito, checkout, login, etc.).
 - Se comunica **unicamente** con el **Ocelot Gateway**.
 - Utiliza **Cookies + JWT** e **Identity** para escenarios autenticados.
 
@@ -118,14 +118,14 @@ Los objetivos principales del proyecto son:
 
 Beneficios:
 - Microservicios desacoplados.
-- Mensajeria confiable con reintentos y dead?letter.
+- Mensajeria confiable.
 - Mayor resiliencia y escalabilidad.
 
 ---
 
 ## Datos y persistencia
 
-Cada microservicio es dueno de su **propia base de datos**, siguiendo el patron **Database?per?Microservice**:
+Cada microservicio es dueno de su **propia base de datos**, siguiendo el patron **Database-per-Microservice**:
 
 - **SQL Server** para todos los microservicios.
 - **Entity Framework Core** como ORM.
@@ -158,8 +158,8 @@ Cada microservicio es dueno de su **propia base de datos**, siguiendo el patron 
 
 - **Arquitectura y patrones**
   - Arquitectura de microservicios
-  - Database?per?Microservice
-  - Arquitectura en capas (N?Layer)
+  - Database-per-Microservice
+  - Arquitectura en capas (N-Layer)
   - Repository Pattern
   - Comunicacion dirigida por eventos
 
