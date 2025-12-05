@@ -1,7 +1,7 @@
-using AutoMapper;
-using Ecommerce.Services.ProductAPI;
-using Ecommerce.Services.ProductAPI.Data;
-using Ecommerce.Services.ProductAPI.Extensions;
+using Ecommerce.Services.EmailAPI.Services;
+using Ecommerce.Services.RewardAPI.Data;
+using Ecommerce.Services.RewardAPI.Extension;
+using Ecommerce.Services.RewardAPI.Messaging;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -14,12 +14,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-/* Configuración de AutoMapper */
-IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
-builder.Services.AddSingleton(mapper);
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddSingleton<IAzureServiceBusConsumer, AzureServiceBusConsumer>();
 
+var optionBuilder = new DbContextOptionsBuilder<AppDbContext>();
+optionBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+builder.Services.AddSingleton(new RewardService(optionBuilder.Options));
 
+// Add services to the container.
 builder.Services.AddControllers();
 
 /* Configuración Swagger */
@@ -48,11 +49,6 @@ builder.Services.AddSwaggerGen(option =>
     });
 });
 
-
-/* Configuración para que el servicio pueda reconocer el token generado por al Auth.Api */
-builder.AddAppAuthentication();
-builder.Services.AddAuthorization();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -62,13 +58,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+// Configure the HTTP request pipeline.
 
 app.UseHttpsRedirection();
-app.UseAuthentication(); /* Para que el frontEnd pueda consumir este backend */
+
 app.UseAuthorization();
 
 app.MapControllers();
 ApplyMigration();
+app.UseAzureServiceBusConsumer();
+
 app.Run();
 
 /* Aplicar la migración al arrancar el servicio */

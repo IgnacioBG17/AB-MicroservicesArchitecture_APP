@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Ecommerce.MessageBus;
 using Ecommerce.Services.OrderAPI.Data;
 using Ecommerce.Services.OrderAPI.Models;
 using Ecommerce.Services.OrderAPI.Models.Dto;
+using Ecommerce.Services.OrderAPI.Models.Dto.RewardsAPI;
 using Ecommerce.Services.OrderAPI.Models.Dto.ShoppingCartAPI;
 using Ecommerce.Services.OrderAPI.Models.Dto.Stripe;
 using Ecommerce.Services.OrderAPI.Service.IService;
@@ -21,15 +23,21 @@ namespace Ecommerce.Services.OrderAPI.Controllers
         private IMapper _mapper;
         private readonly AppDbContext _db;
         private IProductService _productService;
+        private readonly IMessageBus _messageBus;
+        private readonly IConfiguration _configuration;
 
         public OrderController(IMapper mapper,
                                 AppDbContext db,
-                                IProductService productService)
+                                IProductService productService,
+                                IMessageBus messageBus,
+                                IConfiguration configuration)
         {
             _response = new ResponseDto();
             _mapper = mapper;
             _db = db;
             _productService = productService;
+            _messageBus = messageBus;
+            _configuration = configuration;
         }
 
         [Authorize]
@@ -141,6 +149,15 @@ namespace Ecommerce.Services.OrderAPI.Controllers
                     orderHeader.PaymentIntentId = paymentIntent.Id;
                     orderHeader.Status = SD.Status_Approved;
                     _db.SaveChanges();
+                    RewardsDto rewardsDto = new()
+                    {
+                        OrderId = orderHeader.OrderHeaderId,
+                        RewardsActivity = Convert.ToInt32(orderHeader),
+                        UserId = orderHeader.UserId
+                    };
+
+                    string topicName = _configuration.GetValue<string>("TopicAndQueueNames:OrderCreatedTopic");
+                    await _messageBus.PublishMessage(rewardsDto, topicName);
                     _response.Result = _mapper.Map<OrderHeaderDto>(orderHeader);
                 }
 

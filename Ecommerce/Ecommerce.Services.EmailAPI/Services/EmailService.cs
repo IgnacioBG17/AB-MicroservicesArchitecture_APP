@@ -1,4 +1,5 @@
 ﻿using Ecommerce.Services.EmailAPI.Data;
+using Ecommerce.Services.EmailAPI.Message;
 using Ecommerce.Services.EmailAPI.Models;
 using Ecommerce.Services.EmailAPI.Models.Dto;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +32,12 @@ namespace Ecommerce.Services.EmailAPI.Services
             message.Append("</ul>");
 
             await LogAndEmail(message.ToString(), cartDto.CartHeader.Email);
+        }
+
+        public async Task LogOrderPlaced(RewardsMessage rewardsDto)
+        {
+            string message = "New Order Placed. <br/> Order ID:" + rewardsDto.OrderId;
+            await LogAndEmail(message, "bustamanteangel532@gmail.com");
         }
 
         public async Task RegisterUserEmailAndLog(string email)
