@@ -66,7 +66,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthentication(); /* Para que el frontEnd pueda consumir este backend */
 app.UseAuthorization();
-
+app.UseStaticFiles();
 app.MapControllers();
 ApplyMigration();
 app.Run();

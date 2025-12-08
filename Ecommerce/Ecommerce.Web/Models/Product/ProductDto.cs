@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Ecommerce.Web.Utility;
+using System.ComponentModel.DataAnnotations;
 
 namespace Ecommerce.Web.Models.Product
 {
@@ -10,7 +11,11 @@ namespace Ecommerce.Web.Models.Product
         public string Description { get; set; }
         public string CategoryName { get; set; }
         public string ImageUrl { get; set; }
+        public string? ImageLocalPath { get; set; }
         [Range(1,100)]
         public int Count { get; set; } = 1;
+        [MaxFileSize(1)]
+        [AllowedExtensions(new string[] {".jpg", ".png"})]
+        public IFormFile Image { get; set; }
     }
 }

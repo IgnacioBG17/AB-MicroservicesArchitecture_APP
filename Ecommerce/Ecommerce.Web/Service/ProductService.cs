@@ -47,7 +47,8 @@ namespace Ecommerce.Web.Service
             {
                 ApiType = SD.ApiType.POST,
                 Data = ProductDto,
-                Url = SD.ProductAPIBase + "/api/Product" 
+                Url = SD.ProductAPIBase + "/api/Product",
+                ContentType = SD.ContentType.MultipartFormData
             });
         }
         
@@ -57,7 +58,8 @@ namespace Ecommerce.Web.Service
             {
                 ApiType = SD.ApiType.PUT,
                 Data = ProductDto,
-                Url = SD.ProductAPIBase + "/api/Product"
+                Url = SD.ProductAPIBase + "/api/Product",
+                ContentType = SD.ContentType.MultipartFormData
             });
         }
         public async Task<ResponseDto> DeleteProductsAsync(int id)

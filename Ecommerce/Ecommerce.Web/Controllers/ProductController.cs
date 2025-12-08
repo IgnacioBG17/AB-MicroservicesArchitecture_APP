@@ -71,6 +71,7 @@ namespace Ecommerce.Web.Controllers
 
             return NotFound();
         }
+
         [HttpPost]
         public async Task<IActionResult> ProductDelete(ProductDto model)
         {
@@ -109,16 +110,19 @@ namespace Ecommerce.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> ProductEdit(ProductDto model)
         {
-            ResponseDto? response = await _productService.UpdateProductsAsync(model);
+            if (ModelState.IsValid)
+            {
+                ResponseDto? response = await _productService.UpdateProductsAsync(model);
 
-            if (response != null && response.IsSuccess)
-            {
-                TempData["success"] = "Product updated successfully";
-                return RedirectToAction(nameof(ProductIndex));
-            }
-            else
-            {
-                TempData["error"] = response.Message;
+                if (response != null && response.IsSuccess)
+                {
+                    TempData["success"] = "Product updated successfully";
+                    return RedirectToAction(nameof(ProductIndex));
+                }
+                else
+                {
+                    TempData["error"] = response.Message;
+                }
             }
 
             return View(model);
