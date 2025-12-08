@@ -2,6 +2,7 @@
 using Ecommerce.Web.Models;
 using Ecommerce.Web.Service.IService;
 using Ecommerce.Web.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
@@ -75,6 +76,7 @@ namespace Ecommerce.Web.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult GetAll(string status)
         {
